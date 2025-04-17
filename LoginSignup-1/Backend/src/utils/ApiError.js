@@ -19,3 +19,5 @@ class AppiError extends Error {
     }
   }
 }
+
+export { AppiError };
