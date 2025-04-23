@@ -24,13 +24,9 @@ const userrSchema = new mongoose.Schema({
     required: [true, "Please provide Your Password!"],
     minLength: [8, "Password must Contain at Least 8 characters!"],
     maxLength: [32, "Password Cannot exceed 32 characters!"],
-    select:false
+    select: false,
   },
-  // role: {
-  //   type: String,
-  //   required: [true, "please Provide your role"],
-  //   enum: ["admin", "teacher"],
-  // },
+
   createdAt: {
     type: Date,
     default: Date.now,
@@ -44,19 +40,18 @@ userrSchema.pre("save", async function (next) {
     next();
   }
   // the (bcrypt.hash) work is its not showing real password to public in monngoodb
-  // this.password = await bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
-//COMPARING PASSWORD
 userrSchema.methods.comparePassword = async function (enteredpassword) {
   return await bcrypt.compare(enteredpassword, this.password);
 };
 
 //GENERATING A JWT TOKEN FOR AUTHORIZATION
-userrSchema.methods.geJWTToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
-};
+// userrSchema.methods.getJWTToken = function () {
+//   return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
+//     expiresIn: process.env.JWT_EXPIRE,
+//   });
+// };
 
 export const User = mongoose.model("User", userrSchema);
