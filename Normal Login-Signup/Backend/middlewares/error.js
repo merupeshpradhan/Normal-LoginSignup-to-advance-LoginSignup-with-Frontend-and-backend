@@ -1,5 +1,3 @@
-import { json } from "express";
-
 class ErrorHandler extends Error {
   constructor(message, statusCode) {
     super(message);
@@ -8,23 +6,24 @@ class ErrorHandler extends Error {
 }
 
 export const errorMiddleware = (err, req, res, next) => {
-  err.message = err.message || "Internal server error";
+  err.message = err.message || "Internal Server Error";
   err.statusCode = err.statusCode || 500;
 
-  if (err.name === "CaseError") {
-    const message = `Resource not Found. Invalid ${err.path}`;
+  // Duplicate Email Error
+  if (err.code === 11000) {
+    const message = `Duplicate ${Object.keys(err.keyValue)} entered`;
     err = new ErrorHandler(message, 400);
   }
-  if (err.name === 11000) {
-    const message = `Duplicate ${Object.keys(err.KeyValue)} Entered`;
-    err = new ErrorHandler(message, 400);
-  }
+
+  // JWT Invalid Error
   if (err.name === "JsonWebTokenError") {
-    const message = `json web token is Invalid , Try Again`;
+    const message = `JSON Web Token is invalid. Please try again.`;
     err = new ErrorHandler(message, 400);
   }
+
+  // JWT Expired Error
   if (err.name === "TokenExpiredError") {
-    const message = `json Web Token is expired. Try Again.`;
+    const message = `JSON Web Token has expired. Please login again.`;
     err = new ErrorHandler(message, 400);
   }
 
