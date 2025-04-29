@@ -43,7 +43,7 @@ function Login() {
           <p className="font-serif text-black mt-3 tracking-wider">Password</p>
           <input
             type="password"
-            className="border-2 border-white w-full p-2 rounded-md outline-0 font-stretch-expanded  hover:outline-2 hover:border-lime-400  hover:outline-black"
+            className="border-2 border-white w-full mt-1 p-2 rounded-md outline-0 font-stretch-expanded hover:outline-2 hover:border-lime-400  hover:outline-blac"
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
