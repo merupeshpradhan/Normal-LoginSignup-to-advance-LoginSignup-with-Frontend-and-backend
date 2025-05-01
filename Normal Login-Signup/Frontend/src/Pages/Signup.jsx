@@ -39,7 +39,7 @@ function Signup() {
           <input
             type="text"
             placeholder="Enter Full Name"
-            className="border-2 border-white w-full mt-1 p-2 rounded-md outline-0 font-stretch-expanded hover:outline-2 hover:border-lime-400  hover:outline-black"
+            className="border-2 border-white w-full mt-1 p-2 rounded-md outline-0 font-stretch-expanded hover:outline-3 hover:border-lime-400  hover:outline-black"
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
@@ -47,7 +47,7 @@ function Signup() {
           <input
             type="text"
             placeholder="Enter Email"
-            className="border-2 border-white w-full mt-1 p-2 rounded-md outline-0 font-stretch-expanded hover:outline-2 hover:border-lime-400  hover:outline-black"
+            className="border-2 border-white w-full mt-1 p-2 rounded-md outline-0 font-stretch-expanded hover:outline-3 hover:border-lime-400  hover:outline-black"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
@@ -55,7 +55,7 @@ function Signup() {
           <input
             type="text"
             placeholder="Enter Phone number"
-            className="border-2 border-white w-full mt-1 p-2 rounded-md outline-0 font-stretch-expanded hover:outline-2 hover:border-lime-400  hover:outline-black"
+            className="border-2 border-white w-full mt-1 p-2 rounded-md outline-0 font-stretch-expanded hover:outline-3 hover:border-lime-400  hover:outline-black"
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
           />
@@ -63,7 +63,7 @@ function Signup() {
           <input
             type="password"
             placeholder="Enter Password"
-            className="border-2 border-white w-full p-2 rounded-md outline-0 font-stretch-expanded  hover:outline-2 hover:border-lime-400  hover:outline-black"
+            className="border-2 border-white w-full p-2 rounded-md outline-0 font-stretch-expanded  hover:outline-3 hover:border-lime-400  hover:outline-black"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
