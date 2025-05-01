@@ -1,6 +1,6 @@
 # Normal Login-Signup Frontend
 
-### Here install and Use
+### Here Install and Use
 
 ```
 (1) npm install tailwindcss @tailwindcss/vite

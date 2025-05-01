@@ -1,8 +1,8 @@
 # Normal Login-Signup Backend
 
-### Here install and Use
+### Here Install and Use
 
 ```
-bcrypt,cookie-parser,cors,dotenv,express,jsonwebtoken,mongoose,nodemon,validator
+bcrypt, cookie-parser, cors,dotenv, express, jsonwebtoken, mongoose, nodemon, validator
 
 ```
