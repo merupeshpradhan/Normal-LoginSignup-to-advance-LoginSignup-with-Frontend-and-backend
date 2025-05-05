@@ -9,4 +9,5 @@
 (4) express :- npm install express
 (5) cors :- npm install cors
 (6) cookie-parser :- npm install cookie-parser
+(6) bcrypt :- npm install bcrypt
 ```

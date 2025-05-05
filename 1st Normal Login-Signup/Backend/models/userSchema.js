@@ -37,10 +37,11 @@ const userrSchema = new mongoose.Schema({
 
 userrSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
-    next();
+    return next();
   }
   // the (bcrypt.hash) work is its not showing real password to public in monngoodb
   this.password = await bcrypt.hash(this.password, 10);
+  next();
 });
 
 userrSchema.methods.comparePassword = async function (enteredpassword) {
