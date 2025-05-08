@@ -16,6 +16,7 @@ const userSchema = new Schema({
     required: [true, "Please provide Your Password"],
     minLength: [8, "Password must Contain at Least 8 characters!"],
     maxLength: [32, "Password Cannot exceed 32 characters!"],
+    select: false,
   },
   createdAt: {
     type: Date,

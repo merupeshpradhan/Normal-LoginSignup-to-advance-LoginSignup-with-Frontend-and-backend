@@ -10,4 +10,11 @@
 (5) cors :- npm install cors
 (6) cookie-parser :- npm install cookie-parser
 (6) bcrypt :- npm install bcrypt
+(7) jsonwebtoken :- npm install jsonwebtoken
+```
+
+### For Unistall Uses code
+
+```
+ -> npm uninstall package-name
 ```
