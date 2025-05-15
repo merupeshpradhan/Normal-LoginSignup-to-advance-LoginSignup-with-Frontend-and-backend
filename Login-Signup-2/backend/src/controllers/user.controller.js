@@ -40,7 +40,41 @@ const registerUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(201, userData, "User Register Successfully"));
 });
 
-const loginUser = asyncHandler(async (req, res) => {});
-const logoutUser = asyncHandler(async (req, res) => {});
+const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    throw new ApiError(400, "Please Provide email and Password");
+  }
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    throw new ApiError(400, "Email does not exist");
+  }
+
+  const isPasswordCorrect = user.password === password;
+
+  if (!isPasswordCorrect) {
+    throw new ApiError(401, "Email or password is incorrect");
+  }
+
+  const userData = {
+    id: user._id,
+    fullName: user.fullName,
+    email: user.email,
+    dateOfBirth: user.dateOfBirth,
+  };
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, userData, "User logged in successfully"));
+});
+
+const logoutUser = asyncHandler(async (req, res) => {
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "User Logged out successfully"));
+});
 
 export { registerUser, loginUser, logoutUser };
