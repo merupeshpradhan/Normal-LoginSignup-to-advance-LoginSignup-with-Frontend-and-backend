@@ -1,7 +1,7 @@
 {
-  "name": "login-signup-2",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Login-Signup Backend",
+  "description": "Backend Learing",
   "type": "module",
   "main": "src/index.js",
   "scripts": {
@@ -12,13 +12,14 @@
     "JavaScript",
     "Backend"
   ],
-  "author": "Rupesh Pradhan",
+  "author": "Rupesh pradhan",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "mongoose": "^8.14.2"
+    "mongoose": "^8.13.2"
   }
 }
