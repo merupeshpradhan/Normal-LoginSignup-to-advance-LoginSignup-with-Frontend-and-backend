@@ -30,6 +30,7 @@ function Home() {
         console.log("Logout error:", error);
       });
   };
+  
   return (
     <div className="h-[100vh] flex flex-col justify-center items-center font-bold bg-yellow-700 text-white">
       <h1 className="text-2xl mb-3">Hello {user?.fullName || "Guest"}</h1>

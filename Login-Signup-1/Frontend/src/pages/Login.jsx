@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -62,10 +62,16 @@ function Login() {
               value={password}
             />
           </div>
-          <button className="mt-5 mb-2 px-5 py-2 rounded-xl bg-blue-600 text-white font-medium tracking-widest">
+          <button className="mt-5 mb-2 px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium tracking-widest">
             Login
           </button>
         </form>
+        <hr className="text-black mt-2" />
+        <div className="py-2">
+          <Link to={"/signup"}>
+            <button className="mt-2 w-full bg-green-600 hover:bg-green-500 py-2 rounded-lg text-white font-bold">Signup</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

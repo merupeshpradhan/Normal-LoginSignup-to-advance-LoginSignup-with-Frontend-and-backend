@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [fullName, setFullName] = useState("");
@@ -31,6 +31,7 @@ function Signup() {
       })
       .catch((err) => {
         console.log(err);
+         alert("Please write all");
       });
   };
 
@@ -85,10 +86,16 @@ function Signup() {
               value={password}
             />
           </div>
-          <button className="mt-5 mb-2 px-5 py-2 rounded-xl bg-green-400 font-medium tracking-widest">
+          <button className="mt-5 mb-2 px-5 py-2 rounded-xl bg-green-500 hover:bg-green-400 font-medium tracking-widest">
             Register
           </button>
         </form>
+        <hr c className="text-black mt-2"/>
+        <div className="">
+          <Link to={"/"}>
+            <button className="mt-2 w-full bg-blue-600 hover:bg-blue-500 py-2 rounded-lg text-white font-bold">Login</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
