@@ -12,8 +12,8 @@ function Home() {
       try {
         setUser(JSON.parse(userData));
       } catch (error) {
-        console.error("Failed to parse user data:", error);
-        localStorage.removeItem("user"); // Clean up corrupted data
+        console.error("Failed to parse user data:");
+        localStorage.removeItem("user");
       }
     }
   }, []);
@@ -30,12 +30,14 @@ function Home() {
         console.log("Logout error:", error);
       });
   };
-  
+
   return (
-    <div className="h-[100vh] flex flex-col justify-center items-center font-bold bg-yellow-700 text-white">
-      <h1 className="text-2xl mb-3">Hello {user?.fullName || "Guest"}</h1>
+    <div className="h-[100vh] bg-green-300 flex items-center justify-center flex-col">
+      <h1 className="text-5xl font-bold text-violet-500">
+        Hello {user?.fullName || "User"}
+      </h1>
       <button
-        className="bg-red-500 px-5 py-2 rounded-xl hover:bg-red-400 text-white"
+        className="bg-red-700 hover:bg-red-500 px-5 py-2 rounded-2xl mt-5 text-white font-bold"
         onClick={handleLogout}
       >
         Logout

@@ -1,5 +1,5 @@
+import { useState } from "react";
 import axios from "axios";
-import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
@@ -7,7 +7,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:4000/api/v1/users/login", {
@@ -16,64 +16,64 @@ function Login() {
       })
       .then((res) => {
         console.log("Login Success", res.data);
-        alert("Welcome User");
-
         const user = res.data.data;
         localStorage.setItem("user", JSON.stringify(user));
         navigate("/home");
       })
-      .catch((error) => {
-        console.log(
-          "Login faild:",
-          error.response?.data?.message || error.message
-        );
-        alert(error.response?.data?.message || "Login faild");
+      .catch((err) => {
+        console.log("Login faild:", err.response?.data?.message || err.message);
+        alert(err.response?.data?.message || "Login faild");
       });
   };
 
   return (
-    <div className="bg-red-200 h-[100vh] flex justify-center items-center">
-      <div className="border-2 w-[17vw] border-white p-2 rounded-2xl">
-        <h3 className="flex justify-center text-2xl mb-5 font-bold tracking-widest">
-          Login
-        </h3>
-        <form
-          className="flex justify-center flex-col items-center"
-          onSubmit={handleLogin}
-        >
-          <div className="Email">
-            <p className="font-medium">Email</p>
-            <input
-              type="text"
-              className="border-2 border-white w-full focus:border-green-500 focus:outline-none rounded-sm px-2 overflow-none py-1 mt-1"
-              placeholder="Enter Email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
+    <>
+      <div className="h-[100vh] flex justify-center items-center bg-violet-200">
+        <div className="border-2 border-white rounded-2xl w-[25vw]">
+          <p className="flex justify-center p-5 text-2xl font-bold">Login</p>
+          <div className=" flex justify-center">
+            <form className="pt-5 w-full" onSubmit={handleSubmit}>
+              <div className="flex flex-col justify-center items-center">
+                <div className="email w-full px-5">
+                  <p className="pr-3 font-semibold mb-2">Email</p>
+                  <input
+                    type="text"
+                    placeholder="Enter email"
+                    className="border-2 border-black px-3 py-2 w-full rounded-md"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                  />
+                </div>
+                <div className="password  w-full px-5">
+                  <p className="pr-3 font-semibold mt-3 mb-2">Password</p>
+                  <input
+                    type="password"
+                    placeholder="Enter Password"
+                    className="border-2 border-black px-3 py-2 w-full rounded-md"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                  />
+                </div>
+                <button className="bg-blue-600 hover:bg-blue-500 px-4 py-2.5 mt-5 mb-5 w-2/5 rounded-xl text-white font-bold tracking-widest">
+                  Login
+                </button>
+              </div>
+            </form>
           </div>
-
-          <div className="password mt-2">
-            <p className="font-medium">Password</p>
-            <input
-              type="password"
-              className="border-2 border-white w-full focus:border-green-500 focus:outline-none rounded-sm px-2 overflow-none py-1 mt-1"
-              placeholder="Enter Password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
+          <div className="flex justify-center">
+            <hr className="bg-red-300 w-[90%]" />
           </div>
-          <button className="mt-5 mb-2 px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium tracking-widest">
-            Login
-          </button>
-        </form>
-        <hr className="text-black mt-2" />
-        <div className="py-2">
-          <Link to={"/signup"}>
-            <button className="mt-2 w-full bg-green-600 hover:bg-green-500 py-2 rounded-lg text-white font-bold">Signup</button>
-          </Link>
+          <div className=" flex justify-center">
+            <Link
+              to="/signup"
+              className="bg-green-600 hover:bg-green-500 px-4 py-2 mt-5 mb-5 rounded-xl text-white text-center font-bold w-[90%] tracking-widest"
+            >
+              Signup
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
