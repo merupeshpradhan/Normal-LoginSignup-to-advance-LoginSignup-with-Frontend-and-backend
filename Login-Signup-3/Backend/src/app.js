@@ -7,6 +7,8 @@ import cookiParser from "cookie-parser";
 
 const app = express();
 
+// Heere write for Backend Connection with Frontend
+
 app.use(cookiParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
