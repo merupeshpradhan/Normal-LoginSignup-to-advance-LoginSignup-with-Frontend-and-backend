@@ -10,7 +10,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Please Provide Full Your Mother Full Name"],
     },
-    fathername: {
+    fatherName: {
       type: String,
       required: [true, "Please Provide Your Father Full Name"],
     },

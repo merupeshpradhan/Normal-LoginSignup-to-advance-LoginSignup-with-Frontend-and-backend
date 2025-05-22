@@ -1,15 +1,11 @@
-import dotenv from "dotenv";
-dotenv.config({ path: "./.env" });
-
 import express from "express";
-import cors from "cors";
-import cookiParser from "cookie-parser";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 // Heere write for Backend Connection with Frontend
 
-app.use(cookiParser());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
