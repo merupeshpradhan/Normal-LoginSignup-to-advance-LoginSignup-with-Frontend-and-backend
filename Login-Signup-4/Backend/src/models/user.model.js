@@ -6,14 +6,6 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Full name is absent"],
     },
-    phoneNumber: {
-      type: String,
-      required: [true, "Phone name is absent"],
-    },
-    villageName: {
-      type: String,
-      required: [true, "Village name is absent"],
-    },
     fatherName: {
       type: String,
       required: [true, "Father name is absent"],
@@ -22,6 +14,15 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Mother name is absent"],
     },
+    phoneNumber: {
+      type: String,
+      required: [true, "Phone name is absent"],
+    },
+    villageName: {
+      type: String,
+      required: [true, "Village name is absent"],
+    },
+
     email: {
       type: String,
       required: [true, "Please provide your usefull email"],

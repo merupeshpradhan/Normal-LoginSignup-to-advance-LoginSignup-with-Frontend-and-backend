@@ -10,7 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes import
+import userRoutes from "./routes/user.routes.js";
 
 // Routes code decalartion
+app.use("/api/v1/users", userRoutes);
 
 export { app };
