@@ -72,9 +72,9 @@ const userLogin = asyncHandler(async (req, res) => {
     throw new ApiError(400, "This email is not here");
   }
 
-  const isPasswordisCorrect = user.password === password;
+  const isPasswordCorrect  = await user.comparePassword(password);
 
-  if (!isPasswordisCorrect) {
+  if (!isPasswordCorrect ) {
     throw new ApiError(400, "Please provide correct password");
   }
 
