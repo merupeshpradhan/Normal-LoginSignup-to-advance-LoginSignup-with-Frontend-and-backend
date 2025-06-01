@@ -29,16 +29,22 @@ const userSignup = asyncHandler(async (req, res) => {
     password,
   });
 
+  // Generet tokens
+  const accessToken = user.generateAccessToken();
+  const refreshToken = user.generateRefreshToken();
+
   const userData = {
     id: user._id,
     fullName: user.fullName,
     DOB: user.DOB,
     email: user.email,
+    accessToken,
+    refreshToken,
   };
 
   return res
-    .status(200)
-    .json(new ApiResponse(200, userData, "User registered successfuly"));
+    .status(201)
+    .json(new ApiResponse(201, userData, "User registered successfuly"));
 });
 
 const userLogin = asyncHandler(async (req, res) => {
@@ -59,16 +65,22 @@ const userLogin = asyncHandler(async (req, res) => {
     throw new ApiError(400, "This password is incorrect");
   }
 
+  // Generate tokens
+  const accessToken = user.generateAccessToken();
+  const refreshToken = user.generateRefreshToken();
+
   const userData = {
     id: user._id,
     fullName: user.fullName,
     DOB: user.DOB,
     email: user.email,
+    accessToken,
+    refreshToken,
   };
 
   return res
     .status(200)
-    .json(new ApiResponse(200, userData, "User Login successfuly"));
+    .json(new ApiResponse(200, userData, "User Login successfuly"))
 });
 
 const userLogout = asyncHandler(async (req, res) => {
