@@ -2,6 +2,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { User } from "../models/user.model.js";
+import { set } from "mongoose";
 
 const userSignup = asyncHandler(async (req, res) => {
   const { firstName, lastName, DOB, email, password } = req.body;
@@ -30,16 +31,16 @@ const userSignup = asyncHandler(async (req, res) => {
   });
 
   // Generet tokens
-  const accessToken = user.generateAccessToken();
-  const refreshToken = user.generateRefreshToken();
+  // const accessToken = user.generateAccessToken();
+  // const refreshToken = user.generateRefreshToken();
 
   const userData = {
     id: user._id,
     fullName: user.fullName,
     DOB: user.DOB,
     email: user.email,
-    accessToken,
-    refreshToken,
+    // accessToken,
+    // refreshToken,
   };
 
   return res
@@ -69,18 +70,30 @@ const userLogin = asyncHandler(async (req, res) => {
   const accessToken = user.generateAccessToken();
   const refreshToken = user.generateRefreshToken();
 
+  res.cookie("accessToken", accessToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    nameSite: "Strict",
+    maxAge: 24 * 60 * 60 * 1000,
+  });
+
+  res.cookie("refreshToken", refreshToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    nameSite: "Strict",
+    maxAge: 10 * 24 * 60 * 60 * 1000,
+  });
+
   const userData = {
     id: user._id,
     fullName: user.fullName,
     DOB: user.DOB,
     email: user.email,
-    accessToken,
-    refreshToken,
   };
 
   return res
     .status(200)
-    .json(new ApiResponse(200, userData, "User Login successfuly"))
+    .json(new ApiResponse(200, userData, "User Login successfuly"));
 });
 
 const userLogout = asyncHandler(async (req, res) => {
