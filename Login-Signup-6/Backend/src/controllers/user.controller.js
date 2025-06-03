@@ -2,7 +2,6 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { User } from "../models/user.model.js";
-import { set } from "mongoose";
 
 const userSignup = asyncHandler(async (req, res) => {
   const { firstName, lastName, DOB, email, password } = req.body;
@@ -13,7 +12,7 @@ const userSignup = asyncHandler(async (req, res) => {
 
   const findeEmail = await User.findOne({ email });
   if (findeEmail) {
-    throw new ApiError(400, "This email is already exist in our side");
+    throw new ApiError(400, "This email already exist in our system");
   }
 
   const dob = new Date(DOB);
@@ -30,22 +29,16 @@ const userSignup = asyncHandler(async (req, res) => {
     password,
   });
 
-  // Generet tokens
-  // const accessToken = user.generateAccessToken();
-  // const refreshToken = user.generateRefreshToken();
-
   const userData = {
     id: user._id,
     fullName: user.fullName,
     DOB: user.DOB,
     email: user.email,
-    // accessToken,
-    // refreshToken,
   };
 
   return res
     .status(201)
-    .json(new ApiResponse(201, userData, "User registered successfuly"));
+    .json(new ApiResponse(201, userData, "User registered successfully"));
 });
 
 const userLogin = asyncHandler(async (req, res) => {
@@ -58,7 +51,7 @@ const userLogin = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    throw new ApiError(400, "This Email is not availabe in our area");
+    throw new ApiError(400, "This Email is not registered");
   }
 
   const isPasswordCorrect = await user.comparePassword(password);
@@ -70,19 +63,15 @@ const userLogin = asyncHandler(async (req, res) => {
   const accessToken = user.generateAccessToken();
   const refreshToken = user.generateRefreshToken();
 
-  res.cookie("accessToken", accessToken, {
+  const options = {
     httpOnly: true,
+    // secure: true,
     secure: process.env.NODE_ENV === "production",
-    nameSite: "Strict",
-    maxAge: 24 * 60 * 60 * 1000,
-  });
+    sameSite: "Strict",
+  };
 
-  res.cookie("refreshToken", refreshToken, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    nameSite: "Strict",
-    maxAge: 10 * 24 * 60 * 60 * 1000,
-  });
+  res.cookie("accessToken", accessToken, options);
+  res.cookie("refreshToken", refreshToken, options);
 
   const userData = {
     id: user._id,
@@ -93,13 +82,16 @@ const userLogin = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, userData, "User Login successfuly"));
+    .json(new ApiResponse(200, userData, "User Login successful"));
 });
 
 const userLogout = asyncHandler(async (req, res) => {
+  res.clearCookie("accessToken");
+  res.clearCookie("refreshToken");
+
   return res
     .status(200)
-    .json(new ApiResponse(200, {}, "User Logout successfuly"));
+    .json(new ApiResponse(200, {}, "User Logout successful"));
 });
 
 export { userSignup, userLogin, userLogout };
