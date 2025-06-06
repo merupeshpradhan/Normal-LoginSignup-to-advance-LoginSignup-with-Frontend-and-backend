@@ -1,4 +1,6 @@
 import mongoose, { Schema } from "mongoose";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const userSchema = new Schema({
   name: {
@@ -11,16 +13,58 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    required: "Please enter your own email",
+    required: [true, "Please enter your own email"],
   },
-  avtar: {
+  avatar: {
     type: String, // cloudinary url
-    required: true,
+    required: [true, "Avatar is required"],
   },
   password: {
     type: String,
     required: [true, "Please create your password"],
   },
 });
+
+// Hashing password before saveing
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+// COMPARE PASSWORD
+userSchema.methods.comparePassword = function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+// Access and Refresh token
+
+userSchema.methods.accessToken = function () {
+  return jwt.sign(
+    {
+      _id: this._id,
+      name: this.name,
+      DOB: this.DOB,
+      email: this.email,
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+    }
+  );
+};
+
+userSchema.methods.refreshToken = function () {
+  return jwt.sign(
+    {
+      _id: this._id,
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
+  );
+};
 
 export const User = mongoose.model("User", userSchema);
