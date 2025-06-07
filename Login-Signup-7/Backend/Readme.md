@@ -4,5 +4,5 @@
 
 ```
 git rm --cached .env
-git rm -r --cached node_models
+git rm -r --cached node_modules
 ```
