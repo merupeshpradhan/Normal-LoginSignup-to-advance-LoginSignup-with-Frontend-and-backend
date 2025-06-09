@@ -10,6 +10,7 @@ git rm -r --cached node_modules
 ### Here one install cloudinary
 
 ```
-(i)cloudinary -> npm i cloudinary
+(i) cloudinary -> npm i cloudinary
+(ii) multer -> npm i multer
 
 ```
