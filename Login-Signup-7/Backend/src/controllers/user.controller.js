@@ -23,9 +23,9 @@ const userRegister = asyncHandler(async (req, res) => {
 
   const avatar = await uploadOnCloudinary(avatarLocalPath);
   if (!avatar) {
-    console.error("Cloudinary upload failed: ", avatarLocalPath);
+    console.error("Cloudinary upload failed. Path ", avatarLocalPath);
 
-    throw new ApiError(400, "Avatar file is required");
+    throw new ApiError(400, "Failed to upload avatar to Cloudinayry");
   }
 
   const existingUser = await User.findOne({ email });
