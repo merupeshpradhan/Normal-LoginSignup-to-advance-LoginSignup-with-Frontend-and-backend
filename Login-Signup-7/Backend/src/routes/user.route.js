@@ -8,9 +8,8 @@ import { upload } from "../middlewares/multer.middleware.js";
 
 const router = Router();
 
-// router.route("/register").post(upload.single("avatar"), userRegister);
 router.route("/register").post(upload.single("avatar"), userRegister);
 router.route("/login").post(userLogin);
-router.route("logout").post(userLogout);
+router.route("/logout").post(userLogout);
 
 export default router;

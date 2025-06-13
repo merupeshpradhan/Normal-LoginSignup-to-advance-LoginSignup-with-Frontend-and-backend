@@ -42,7 +42,7 @@ userSchema.methods.comparePassword = function (password) {
 
 // Access and Refresh token
 
-userSchema.methods.accessToken = function () {
+userSchema.methods.generateAccessToken  = function () {
   return jwt.sign(
     {
       _id: this._id,
@@ -57,7 +57,7 @@ userSchema.methods.accessToken = function () {
   );
 };
 
-userSchema.methods.refreshToken = function () {
+userSchema.methods.generateRefreshToken  = function () {
   return jwt.sign(
     {
       _id: this._id,
