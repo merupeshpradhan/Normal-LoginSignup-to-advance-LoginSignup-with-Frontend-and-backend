@@ -11,11 +11,14 @@ const userRegister = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All fields are required");
   }
 
-  const fullName = `${firstName} ${
+  const name = `${firstName} ${
     middleName ? middleName + "" : ""
   } ${lastName}`;
 
-  const avatarLocalPath = req.files?.avatar[0]?.path;
+  // const avatarLocalPath = req.files?.avatar[0]?.path;
+  const avatarLocalPath = req.file?.path;
+
+  console.log("Local file path:", avatarLocalPath);
 
   if (!avatarLocalPath) {
     throw new ApiError(400, "Avatar file is required");
@@ -43,7 +46,7 @@ const userRegister = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({
-    fullName,
+    name,
     DOB: dob,
     email,
     avatar: avatar.url,
