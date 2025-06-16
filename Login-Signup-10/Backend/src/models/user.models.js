@@ -6,24 +6,25 @@ const userSchema = new Schema({
   userName: { type: String, required: [true, "Enter your full name"] },
   DOB: { type: Date, required: [true, "Enter your date of Birth"] },
   email: { type: String, required: [true, "Enter your email"] },
+  avatar: { type: String, required: [true, "Please provide your photos"] },
   password: { type: String, required: [true, "Create Your usefuly password"] },
 });
 
 userSchema.pre("save", async function (next) {
-  if (!this.password("password")) {
+  if (!this.isModified("password")) {
     return next();
   }
 
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-userSchema.method.comparePassword = function (password) {
+userSchema.methods.comparePassword = function (password) {
   return bcrypt.compare(password, this.password);
 };
 
 // Access and Refresh Token
 
-userSchema.method.generateAccesstoken = function () {
+userSchema.methods.generateAccesstoken = function () {
   return jwt.sign(
     {
       _id: this._id,
@@ -37,14 +38,14 @@ userSchema.method.generateAccesstoken = function () {
   );
 };
 
-userSchema.method.generateRefreshToken = function () {
+userSchema.methods.generateRefreshToken = function () {
   return jwt.sign(
     {
       _id: this._id,
     },
     process.env.REFRESH_TOKEN_SCRET,
     {
-      expiresIn: REFRESH_TOKEN_EXPIRY,
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
     }
   );
 };
