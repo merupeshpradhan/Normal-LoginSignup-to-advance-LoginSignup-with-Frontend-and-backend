@@ -7,6 +7,7 @@ const userSchema = new Schema({
   DOB: { type: Date, required: [true, "Enter your date of Birth"] },
   email: { type: String, required: [true, "Enter your email"] },
   avatar: { type: String, required: [true, "Please provide your photos"] },
+  coverImage: { type: String },
   password: { type: String, required: [true, "Create Your usefuly password"] },
 });
 

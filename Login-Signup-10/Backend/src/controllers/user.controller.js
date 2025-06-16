@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { User } from "../models/user.models.js";
+import { uploadOnCloudinary } from "../middlewares/multer.middlerware.js";
 
 const userRegister = asyncHandler(async (req, res) => {
   const { firstName, middleName, lastName, DOB, email, password } = req.body;
@@ -11,6 +12,16 @@ const userRegister = asyncHandler(async (req, res) => {
   }
 
   const userName = `${firstName} ${middleName} ${lastName}`;
+
+  const avatarLocalPath = req.files?.avatar?.[0]?.path;
+  if (!avatarLocalPath) {
+    throw new ApiError(400, "Avatar photo is required");
+  }
+
+  const avatar = await uploadOnCloudinary(avatarLocalPath);
+  if (!avatar) {
+    throw new ApiError(400, "Faild to upload avatar to  Cloudinary");
+  }
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
@@ -27,6 +38,7 @@ const userRegister = asyncHandler(async (req, res) => {
     DOB: dob,
     email,
     password,
+    avatar: avatar.url,
   });
 
   const userData = {
@@ -34,6 +46,7 @@ const userRegister = asyncHandler(async (req, res) => {
     userName: user.userName,
     DOB: user.DOB,
     email: user.email,
+    avatar: user.avatar,
   };
 
   return res
