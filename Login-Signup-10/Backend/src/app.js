@@ -16,4 +16,8 @@ import userRoutes from "./routes/user.routes.js";
 // Here start website first work
 app.use("/api/v1/users", userRoutes);
 
+// Error Handler
+import { errorHandler } from "./middlewares/error.middleware.js";
+app.use(errorHandler);
+
 export { app };
