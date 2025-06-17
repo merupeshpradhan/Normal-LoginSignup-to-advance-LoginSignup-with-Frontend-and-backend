@@ -2,7 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { User } from "../models/user.models.js";
-import { uploadOnCloudinary } from "../middlewares/multer.middlerware.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const userRegister = asyncHandler(async (req, res) => {
   const { firstName, middleName, lastName, DOB, email, password } = req.body;
@@ -20,17 +20,27 @@ const userRegister = asyncHandler(async (req, res) => {
 
   const avatar = await uploadOnCloudinary(avatarLocalPath);
   if (!avatar) {
-    throw new ApiError(400, "Faild to upload avatar to  Cloudinary");
+    throw new ApiError(400, "Failed to upload avatar to Cloudinary");
+  }
+
+  // Extra Photo
+  let extraPhotoUrl = null;
+  const extraPhotoPath = await req.files?.extraPhoto?.[0]?.path;
+  if (extraPhotoPath) {
+    const extraUpload = await uploadOnCloudinary(extraPhotoPath);
+    if (extraUpload) {
+      extraPhotoUrl = extraUpload.url;
+    }
   }
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    throw new ApiError(400, "This email is already existes");
+    throw new ApiError(400, "This email is already registered");
   }
 
   const dob = new Date(DOB);
   if (isNaN(dob.getTime())) {
-    throw new ApiError(400, "Invalid date of birth you provide");
+    throw new ApiError(400, "Invalid date of birth provided");
   }
 
   const user = await User.create({
@@ -39,6 +49,7 @@ const userRegister = asyncHandler(async (req, res) => {
     email,
     password,
     avatar: avatar.url,
+    extraPhoto: extraPhotoUrl,
   });
 
   const userData = {
@@ -47,6 +58,7 @@ const userRegister = asyncHandler(async (req, res) => {
     DOB: user.DOB,
     email: user.email,
     avatar: user.avatar,
+    extraPhoto: user.extraPhoto,
   };
 
   return res
