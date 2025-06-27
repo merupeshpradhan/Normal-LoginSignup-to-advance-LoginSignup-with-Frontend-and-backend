@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [fullName, setFullName] = useState("");
@@ -15,7 +16,7 @@ function Signup() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4000/api/v1/register", {
+      .post("http://localhost:4000/api/v1/users/register", {
         fullName,
         motherName,
         fatherName,
@@ -25,7 +26,7 @@ function Signup() {
       })
       .then((res) => {
         console.log("Register Successfully", res);
-        alert("User registeres successfully!");
+        alert("You register successfully!");
 
         setFullName("");
         setMotherName("");
@@ -41,8 +42,8 @@ function Signup() {
   };
 
   return (
-    <div className="h-[100vh] flex justify-center items-center">
-      <div className="shadow-md rounded-2xl border border-red-400 w-[20vw] h-[55vh]">
+    <div className="h-[100vh] flex justify-center items-center bg-red-100">
+      <div className="shadow-xl shadow-red-400 rounded-2xl border border-red-300 w-[20vw] h-[62vh] ">
         <div className="flex justify-center mt-3 font-bold">
           <h3 className="px-10 font-bold text-2xl text-red-500">Register</h3>
         </div>
@@ -102,11 +103,20 @@ function Signup() {
         </div>
         <div className="mt-5 px-3 flex justify-center">
           <button
-            className="bg-red-500 py-2 px-5 rounded-xl text-lg font-bold text-white hover:bg-red-600"
+            className="bg-red-500 py-2 px-5 rounded-xl text-lg font-bold text-white tracking-widest hover:bg-red-600"
             onClick={handleSignup}
           >
             Signup
           </button>
+        </div>
+        <hr className="mt-5" />
+        <div className="mt-5 px-3 flex justify-center">
+          <Link
+            to={"/"}
+            className="bg-green-500 py-2 px-5 rounded-xl text-lg font-bold text-center text-white tracking-widest hover:bg-green-600 w-full"
+          >
+            Login
+          </Link>
         </div>
       </div>
     </div>
