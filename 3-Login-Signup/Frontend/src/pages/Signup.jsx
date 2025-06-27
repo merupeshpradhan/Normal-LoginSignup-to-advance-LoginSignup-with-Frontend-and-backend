@@ -85,16 +85,16 @@ function Signup() {
         </div>
         <div className="mt-3 px-3">
           <input
-            placeholder="Email"
+            placeholder="Email" 
             className="border outline-0 pl-3 rounded-md w-full py-2"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="mt-3 px-3">
+        <div className="mt-3 px-3"> 
           <input
-            placeholder="Password"
+            placeholder="Password" 
             className="border outline-0 pl-3 rounded-md w-full py-2"
             type="password"
             value={password}
