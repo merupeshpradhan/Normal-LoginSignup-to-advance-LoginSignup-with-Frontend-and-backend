@@ -54,23 +54,25 @@ function Signup() {
 
   return (
     <div className="bg-red-50 h-[100vh] flex  justify-center items-center">
-      <div className="border border-red-300 w-[30vw] h-[70%] shadow-xl shadow-red-300 rounded-xl p-2">
-        <div className="flex justify-center">
+      <div className="border border-red-300 w-[30vw] h-[69%] shadow-xl shadow-red-300 rounded-xl p-2">
+        <div className="flex justify-center pb-[58px]">
           <h1 className="text-red-400 font-bold tracking-widest text-xl">
             Signup
           </h1>
         </div>
-        <div className="mt-15 mx-5 flex items-center">
+        <div className=" mx-5 flex items-center">
           <input
             className="border w-full rounded-sm py-2 px-5 tracking-wider mr-4"
             placeholder="Full name"
             type="text"
+            value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
           <input
             className="border w-full rounded-sm py-2 px-5 tracking-wider"
             placeholder="Mother Name"
             type="text"
+            value={motherName}
             onChange={(e) => setMotherName(e.target.value)}
           />
         </div>
@@ -79,12 +81,14 @@ function Signup() {
             className="border w-full rounded-sm py-2 px-5 tracking-wider mr-4"
             placeholder="Father name"
             type="text"
+            value={fatherName}
             onChange={(e) => setFatherName(e.target.value)}
           />
           <input
             className="border w-full rounded-sm py-2 px-5 tracking-wider"
             placeholder="Phone number"
             type="text"
+            value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
         </div>
@@ -93,12 +97,14 @@ function Signup() {
             className="border w-full rounded-sm py-2 px-5 tracking-wider mr-4"
             placeholder="Village name"
             type="text"
+            value={villageName}
             onChange={(e) => setVillageName(e.target.value)}
           />
           <input
             className="border w-full rounded-sm py-2 px-5 tracking-wider"
             placeholder="Email"
             type="email"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -107,6 +113,7 @@ function Signup() {
             className="border w-full rounded-sm py-2 px-5 tracking-wider mr-4"
             placeholder="Password"
             type="password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
@@ -120,7 +127,7 @@ function Signup() {
         </div>
         <hr className="mt-12" />
         <Link to={"/"}>
-          <button className="bg-blue-500 hover:bg-blue-600 w-full py-2 mt-8 font-bold text-white tracking-wider rounded-xl cursor-pointer">
+          <button className="bg-blue-500 hover:bg-blue-600 w-full py-2 mt-[32px] font-bold text-white tracking-wider rounded-xl cursor-pointer">
             Login
           </button>
         </Link>
