@@ -45,7 +45,7 @@ function Login() {
         <div className="mt-13 px-3">
           <input
             placeholder="Email"
-            className="border-2 border-green-400 p-2 w-full rounded-sm outline-black"
+            className="border-2 border-green-400 p-2 w-full rounded-sm tracking-wider outline-black"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -54,7 +54,7 @@ function Login() {
         <div className="mt-5 px-3">
           <input
             placeholder="Password"
-            className="border-2 border-green-400 p-2 w-full rounded-sm outline-black"
+            className="border-2 border-green-400 p-2 w-full rounded-sm tracking-wider outline-black"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
