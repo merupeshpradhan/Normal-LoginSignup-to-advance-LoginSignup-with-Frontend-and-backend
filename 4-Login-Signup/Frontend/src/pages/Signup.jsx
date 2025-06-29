@@ -56,7 +56,7 @@ function Signup() {
     <div className="bg-red-50 h-[100vh] flex  justify-center items-center">
       <div className="border border-red-300 w-[30vw] h-[69%] shadow-xl shadow-red-300 rounded-xl p-2">
         <div className="flex justify-center pb-[58px]">
-          <h1 className="text-red-400 font-bold tracking-widest text-xl">
+          <h1 className="text-red-400 font-bold tracking-widest text-2xl italic">
             Signup
           </h1>
         </div>

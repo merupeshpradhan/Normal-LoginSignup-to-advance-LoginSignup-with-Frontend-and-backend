@@ -21,7 +21,7 @@ function Login() {
         alert("Welcome User");
         navigate("/home");
       })
-      .then((err) => {
+      .catch((err) => {
         console.log(
           "Login faild: ",
           err.response?.data?.message || err.message
@@ -38,7 +38,7 @@ function Login() {
     <div className="bg-green-50 h-[100vh] flex justify-center items-center">
       <div className="border border-green-300 p-2 w-[20vw] h-[42.5vh] rounded-xl shadow-xl shadow-green-300">
         <div className="flex justify-center">
-          <h1 className="text-xl tracking-widest font-bold italic text-green-600">
+          <h1 className="text-2xl tracking-widest font-bold italic text-green-600">
             Login
           </h1>
         </div>
