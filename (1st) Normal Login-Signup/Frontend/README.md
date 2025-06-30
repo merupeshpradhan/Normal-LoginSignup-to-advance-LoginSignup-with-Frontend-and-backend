@@ -1,6 +1,6 @@
 # Normal Login-Signup Frontend
 
-### Here Install and Use
+### Here Install For Use
 
 ```
 (1) npm create vite@latest
