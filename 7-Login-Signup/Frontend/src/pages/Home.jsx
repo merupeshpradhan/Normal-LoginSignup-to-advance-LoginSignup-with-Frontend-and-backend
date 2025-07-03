@@ -42,17 +42,17 @@ function Home() {
   return (
     <div className="bg-green-200 h-[100vh] flex flex-col justify-center items-center">
       <div className="text-xl font-semibold tracking-wider text-yellow-800 flex justify-center items-center">
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center">
           <img
             src={user?.avatar}
-            className="h-[20vh] border border-black w-[30vh] rounded-2xl"
+            className="h-[30vh] border border-black w-[30vh] rounded-2xl"
           />
-          <p className="mt-3">Welcome {user?.fullName || "User"} 😍</p>
+          <p className="mt-3 lg:text-xl xl:text-2xl">Welcome {user?.fullName || "User"} 😍</p>
         </div>
       </div>
       <div className="mt-4">
         <button
-          className="text-[15px] font-medium text-white tracking-wider bg-red-500 w-[100px] h-[35px] rounded-md"
+          className="text-[15px] font-medium text-white tracking-wider cursor-pointer bg-red-500 w-[100px] h-[35px] md:w-[140px] md:h-[40px] md:text-[16px] xl:h-[42px] xl:text-[20px] rounded-md"
           onClick={userLogout}
         >
           Logout
