@@ -4,44 +4,54 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [avatar, setAvatar] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
   const [DOB, setDOB] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
 
-  const userLogin = (e) => {
+  const userSignup = async (e) => {
     e.preventDefault();
 
-    axios
-      .post("http://localhost:4000/api/v1/users/register", {
-        avatar,
-        firstName,
-        middleName,
-        lastName,
-        DOB,
-        email,
-        password,
-      })
-      .then((res) => {
-        console.log("User login successfully 😍", res.data);
+    try {
+      const formData = new FormData();
+      formData.append("avatar", avatar);
+      formData.append("firstName", firstName);
+      formData.append("middleName", middleName);
+      formData.append("lastName", lastName);
+      formData.append("DOB", DOB);
+      formData.append("email", email);
+      formData.append("password", password);
 
-        alert("Wellcome greate user for login this side 😍");
-        navigate("/");
+      const res = await axios.post(
+        "http://localhost:4000/api/v1/users/register",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-        setFirstName("");
-        setMiddleName("");
-        setLastName("");
-        setDOB("");
-        setEmail("");
-        setPassword("");
-      })
-      .catch((err) => {
-        console.error("Please provide your all detials 🙄", err);
-        alert("Please provide your all detials 🙄");
-      });
+      console.log("User login successfully 😍", res.data);
+
+      alert("Wellcome greate user for login this side 😍");
+      navigate("/");
+
+      setAvatar("");
+      setFirstName("");
+      setMiddleName("");
+      setLastName("");
+      setDOB("");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.error("Please provide your all detials 🙄", error);
+      alert("Please provide your all detials 🙄");
+    }
   };
 
   return (
@@ -52,10 +62,44 @@ function Signup() {
             Sign Up
           </h3>
         </div>
-        <form onSubmit={userLogin}>
+        <form onSubmit={userSignup}>
           <div className="mt-[20px] xl:mt-[24px] lg:mt-24px md:mt-[24px] flex flex-col items-center">
-          <div className=""></div>
-            <div className="flex flex-col items-center md:flex md:items-center w-[95%]">
+            <div className="flex items-center flex-col">
+              {avatarPreview ? (
+                <img
+                  src={avatarPreview}
+                  alt="Avtar Preview"
+                  className="w-20 h-20 rounded-full"
+                />
+              ) : (
+                <div className="w-20 h-20 rounded-full border border-gray-400 flex items-center justify-center text-xs text-gray-500 mb-2">
+                  No Image
+                </div>
+              )}
+              <button
+                type="button"
+                onClick={() => document.getElementById("fileInput").click()}
+                className="bg-yellow-300 text-white tracking-wider xl:font-semibold xl:px-16 xl:py-1.5 rounded mt-[15px]"
+              >
+                {avatar ? "Change Photo" : "Choose Photo"}
+              </button>
+              <input
+                className="hidden"
+                id="fileInput"
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  setAvatar(file);
+                  if (file) {
+                    setAvatarPreview(URL.createObjectURL(file));
+                  } else {
+                    setAvatarPreview(null);
+                  }
+                }}
+              />
+            </div>
+            <div className="flex flex-col items-center md:flex md:items-center w-[95%] mt-[15px]">
               <input
                 className="border rounded-sm pl-2 text-sm py-[5px] w-[95%] h-[33px] md:h-[37px] xl:h-[39px] xl:font-semibold lg:font-semibold md:font-semibold tracking-widest focus:outline-yellow-400"
                 placeholder="First name"
