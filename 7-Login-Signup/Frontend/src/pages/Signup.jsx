@@ -36,9 +36,9 @@ function Signup() {
         }
       );
 
-      console.log("User login successfully 😍", res.data);
+      console.log("User login successfully 😋", res.data);
 
-      alert("Wellcome greate user for login this side 😍");
+      alert("Youser you succefuully register 😋");
       navigate("/");
 
       setAvatar("");
@@ -64,12 +64,12 @@ function Signup() {
         </div>
         <form onSubmit={userSignup}>
           <div className="mt-[20px] xl:mt-[24px] lg:mt-24px md:mt-[24px] flex flex-col items-center">
-            <div className="flex items-center flex-col">
+            <div className="flex flex-col items-center">
               {avatarPreview ? (
                 <img
                   src={avatarPreview}
                   alt="Avtar Preview"
-                  className="w-20 h-20 rounded-full"
+                  className="w-28 rounded-full"
                 />
               ) : (
                 <div className="w-20 h-20 rounded-full border border-gray-400 flex items-center justify-center text-xs text-gray-500 mb-2">
@@ -79,9 +79,9 @@ function Signup() {
               <button
                 type="button"
                 onClick={() => document.getElementById("fileInput").click()}
-                className="bg-yellow-300 text-white tracking-wider xl:font-semibold xl:px-16 xl:py-1.5 rounded mt-[15px]"
+                className="bg-yellow-30  text-white bg-indigo-500 font-semibold tracking-widest text-sm py-[6px] xl:px-[30px] rounded mt-[15px] cursor-pointer w-full text-left"
               >
-                {avatar ? "Change Photo" : "Choose Photo"}
+                {avatar ? "Change photo" : "Choose photo"}
               </button>
               <input
                 className="hidden"
