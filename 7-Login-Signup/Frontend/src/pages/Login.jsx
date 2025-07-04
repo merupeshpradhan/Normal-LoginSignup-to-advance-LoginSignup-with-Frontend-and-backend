@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
 
   const userLogin = (e) => {
     e.preventDefault();
@@ -14,6 +14,10 @@ function Login() {
       .post("http://localhost:4000/api/v1/users/login", { email, password })
       .then((res) => {
         console.log("User login successfully 😍", res.data);
+
+        const user = res.data.data;
+        console.log("user going to localStorage", user);
+        localStorage.setItem("user", JSON.stringify(user));
 
         alert("Wellcome greate user for login this side 😍");
         navigate("/home");
@@ -36,9 +40,9 @@ function Login() {
           </h3>
         </div>
         <form onSubmit={userLogin}>
-          <div className="mt-[24px] md:mt-[20px] flex flex-col items-center">
+          <div className="mt-[24px] xl:mt-[30px] md:mt-[20px] flex flex-col items-center">
             <input
-              className="border rounded-sm pl-2 text-sm xl:text-base py-[5px] w-[85%] h-[33px] md:h-[37px] xl:h-[45px] font-semibold tracking-widest focus:outline-green-400"
+              className="border rounded-sm pl-2 text-sm xl:text-base py-[5px] w-[85%] h-[33px] md:h-[37px] xl:h-[39px] font-semibold tracking-widest focus:outline-green-400"
               placeholder="Email"
               type="email"
               value={email}
@@ -47,8 +51,8 @@ function Login() {
               }}
             />
             <input
-              className="border rounded-sm pl-2 text-sm xl:text-base py-[5px] w-[85%] h-[33px] md:h-[37px] xl:h-[45px] font-semibold tracking-widest mt-[12px] focus:outline-green-400"
-              placeholder="Email"
+              className="border rounded-sm pl-2 text-sm xl:text-base py-[5px] w-[85%] h-[33px] md:h-[37px] xl:h-[39px] font-semibold tracking-widest mt-[12px] xl:mt-[15px] focus:outline-green-400"
+              placeholder="Password"
               type="password"
               value={password}
               onChange={(e) => {

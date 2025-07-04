@@ -99,6 +99,7 @@ const userLogin = asyncHandler(async (req, res) => {
     name: user.name,
     DOB: user.DOB,
     email: user.email,
+    avatar: user.avatar,
   };
 
   return res

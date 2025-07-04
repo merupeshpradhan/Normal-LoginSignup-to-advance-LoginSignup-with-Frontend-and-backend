@@ -10,7 +10,9 @@ function Home() {
     const userData = localStorage.getItem("user");
     if (userData && userData !== "undefined") {
       try {
-        setUser(JSON.parse(userData));
+        const parsedUser = JSON.parse(userData);
+        console.log("parsed user from localStorage", parsedUser);
+        setUser(parsedUser);
       } catch (error) {
         console.log("Somthing went to wrong to get user data");
         localStorage.removeItem("user");
@@ -47,7 +49,9 @@ function Home() {
             src={user?.avatar}
             className="h-[30vh] border border-black w-[30vh] rounded-2xl"
           />
-          <p className="mt-3 lg:text-xl xl:text-2xl">Welcome {user?.fullName || "User"} 😍</p>
+          <p className="mt-3 lg:text-xl xl:text-2xl">
+            Welcome {user?.name || "User"} 😍
+          </p>
         </div>
       </div>
       <div className="mt-4">
