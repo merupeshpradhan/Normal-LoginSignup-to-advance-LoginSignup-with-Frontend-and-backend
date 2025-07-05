@@ -26,7 +26,7 @@ function Login() {
         setPassword("");
       })
       .catch((err) => {
-        console.log("User did not send correct email and password");
+        console.log("User did not send correct email and password",err);
         alert("Please provide correct email and password 🙄");
       });
   };
