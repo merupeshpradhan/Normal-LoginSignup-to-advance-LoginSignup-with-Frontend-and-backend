@@ -11,7 +11,7 @@ function Login() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4000/api/v1/users/login", { email, password })
+      .post("http://localhost:4000/api/v1/users/signup", { email, password })
       .then((res) => {
         console.log("User login succefully!", res);
 
