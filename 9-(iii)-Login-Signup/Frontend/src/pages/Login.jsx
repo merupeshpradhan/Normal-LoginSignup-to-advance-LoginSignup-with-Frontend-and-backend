@@ -18,7 +18,7 @@ function Login() {
         alert("Welcome user for your usefull area 😋❤️");
 
         const user = res.data.data;
-        localStorage.getItem("user", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
 
         navigate("/home");
 
@@ -58,7 +58,7 @@ function Login() {
             </button>
           </form>
           <hr className="mt-[15px]" />
-          <Link className="flex justify-center">
+          <Link to="/signup" className="flex justify-center">
             <button className="mt-[15px] w-full h-[34px] rounded-sm text-white font-semibold tracking-widest bg-red-500 hover:bg-red-600 cursor-pointer">
               Signup
             </button>
