@@ -103,17 +103,19 @@ const userLogin = asyncHandler(async (req, res) => {
     userName: user.userName,
     DOB: user.DOB,
     email: user.email,
+    avatar: user.avatar,
+    extraPhoto: user.extraPhoto,
   };
 
   return res
     .status(200)
-    .json(new ApiResponse(200, userData, "User Login successfuly"));
+    .json(new ApiResponse(200, "User Login successfuly",userData));
 });
 
 const userLogout = asyncHandler(async (req, res) => {
   res.clearCookie("accessToken");
   res.clearCookie("refreshToken");
-  
+
   return res
     .status(200)
     .json(new ApiResponse(200, {}, "User Logout successfuly"));

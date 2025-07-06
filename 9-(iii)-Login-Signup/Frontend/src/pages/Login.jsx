@@ -11,11 +11,15 @@ function Login() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4000/api/v1/users/signup", { email, password })
+      .post(
+        "http://localhost:4000/api/v1/users/login",
+        { email, password },
+        { withCredentials: true }
+      )
       .then((res) => {
         console.log("User login succefully!", res);
 
-        alert("Welcome user for your usefull area 😋❤️");
+        alert("Welcome user for your successfully area 😋❤️");
 
         const user = res.data.data;
         localStorage.setItem("user", JSON.stringify(user));
@@ -26,7 +30,7 @@ function Login() {
         setPassword("");
       })
       .catch((err) => {
-        console.log("User did not send correct email and password",err);
+        console.log("User did not send correct email and password", err);
         alert("Please provide correct email and password 🙄");
       });
   };

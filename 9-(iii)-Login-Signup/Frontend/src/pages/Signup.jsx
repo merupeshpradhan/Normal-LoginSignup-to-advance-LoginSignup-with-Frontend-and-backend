@@ -40,7 +40,7 @@ function Signup() {
     <div className="flex justify-center items-center h-[100vh] bg-red-50">
       <div className="border border-red-400 rounded-sm shadow-xs shadow-red-300 p-2 w-[70%]">
         <div className="mt-[px] flex justify-center">
-          <h2 className="tracking-widest font-bold text-blue-600">Login</h2>
+          <h2 className="tracking-widest font-bold text-red-600">Login</h2>
         </div>
         <div className="mt-[10%]">
           <form onSubmit={userSignup} className="flex flex-col items-center">
@@ -91,9 +91,9 @@ function Signup() {
             </button>
           </form>
           <hr className="mt-[15px]" />
-          <Link to="/signup" className="flex justify-center">
+          <Link to="/" className="flex justify-center">
             <button className="mt-[15px] w-full h-[34px] rounded-sm text-white font-semibold tracking-widest bg-green-500 hover:bg-green-600 cursor-pointer">
-              Signup
+              Login
             </button>
           </Link>
         </div>
