@@ -48,16 +48,25 @@ function Home() {
   return (
     <div className="flex justify-center items-center h-[100vh] bg-red-50">
       <div className="flex justify-center items-center flex-col">
-        <div className="flex justify-center">
-          <img src={user?.avatar} className="w-[30%] rounded" />
-          <img src={user?.extraPhoto} className="w-[30%] ml-[20px]"/>
+        <div className="flex flex-col justify-center mb-[20px]">
+          <div className="flex items-center justify-between pl-[20px] px-[20px]">
+            <img
+              src={user?.avatar}
+              className="w-[45%] lg:w-[35%] rounded-full border-2 border-black"
+            />
+            <img src={user?.extraPhoto} className="w-[45%] lg:w-[35%] rounded-xl" />
+          </div>
+          <h3 className="text-lg font-semibold xl:font-bol xl:text-2xl tracking-wider text-yellow-800 mt-[10px] ml-[10px] mr-[10px]">
+            <div className="flex flex-col justify-center items-center">
+              <p>welcome</p>
+              <p>{user?.userName || "User"} 😍</p>
+            </div>
+          </h3>
         </div>
-        <h3 className="text-2xl font-semibold tracking-wider text-yellow-800 mt-[10px]">
-          welcome {user?.userName || "User"} 😍
-        </h3>
+
         <button
           onClick={userLogout}
-          className="mt-[20px] border rounded w-[35%] h-[34px] font-semibold tracking-wider text-white bg-red-500 hover:bg-red-600 cursor-pointer"
+          className="border rounded w-[35%] h-[34px] lg:h-[40px] md:w-[20%] lg:w-[17%] xl:w-[7%] font-semibold tracking-wider text-white bg-red-500 hover:bg-red-600 cursor-pointer"
         >
           Logout
         </button>
