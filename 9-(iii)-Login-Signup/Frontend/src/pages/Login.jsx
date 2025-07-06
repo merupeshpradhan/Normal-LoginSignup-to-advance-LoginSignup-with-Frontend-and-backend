@@ -37,9 +37,9 @@ function Login() {
 
   return (
     <div className="flex justify-center items-center h-[100vh] bg-green-50">
-      <div className="border border-green-400 rounded-sm shadow-xs shadow-green-300 p-2 w-[70%]">
+      <div className="border border-green-400 rounded-sm shadow-xs shadow-green-300 p-2 md:p-5 lg:p-6 w-[70%] xl:p-7 md:w-[50%] lg:w-[40%] xl:w-[20%]">
         <div className="mt-[px] flex justify-center">
-          <h2 className="tracking-widest font-bold text-blue-600">Login</h2>
+          <h2 className="tracking-widest font-bold xl:text-2xl lg:text-xl text-blue-600">Login</h2>
         </div>
         <div className="mt-[10%]">
           <form onSubmit={userLogin} className="flex flex-col items-center">
