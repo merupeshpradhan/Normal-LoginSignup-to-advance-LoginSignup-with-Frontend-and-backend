@@ -13,6 +13,7 @@ function Signup() {
   const [DOB, setDOB] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const userSignup = async (e) => {
@@ -22,6 +23,8 @@ function Signup() {
       alert("Please select an avatar photo (required)");
       return;
     }
+
+    setLoading(true);
 
     try {
       const formData = new FormData();
@@ -58,17 +61,19 @@ function Signup() {
       setEmail("");
       setPassword("");
     } catch (error) {
+      setLoading(false);
+
       console.log(
         "Please send all detials of your",
         error.response?.data?.message || error.message
       );
-      alert("Please send all detials of your 🙄");
+      alert("Something went wrong. Please check your details.🙄");
     }
   };
 
   return (
     <div className="flex justify-center items-center h-[100vh] bg-red-50">
-      <div className="border border-red-400 rounded-sm shadow-xl shadow-red-300 p-2 w-[85%] md:w-[70%] lg:w-[60%] xl:w-[30%]">
+      <div className="border border-red-400 rounded-sm shadow-xl shadow-red-300 p-2 w-[85%] md:w-[70%] lg:w-[60%] xl:w-[30%] xl:pb-4">
         <div className="flex justify-center">
           <h2 className="tracking-widest font-extrabold text-lg italic text-red-600">
             Signup
@@ -94,7 +99,7 @@ function Signup() {
                   onClick={() =>
                     document.getElementById("avtarImgInput").click()
                   }
-                  className="bg-yellow-30 text-white bg-indigo-500 font-semibold md:font-bold tracking-widest text-sm md:text-lg py-[6px] xl:px-[12px] xl:py-[5px] xl:mt-[9px] rounded mt-[10px] md:mt-[13px] lg:mt-[15px] cursor-pointer w-ful"
+                  className="bg-yellow-30 text-white bg-indigo-500 font-semibold md:font-bold tracking-widest text-sm md:text-lg py-[6px] xl:px-[12px] xl:py-[5px] xl:mt-[9px] rounded mt-[10px] md:mt-[13px] lg:mt-[15px] cursor-pointer w-full"
                 >
                   <p className="text-[8px] xl:text-[12px] px-[5px] xl:px-[5px]">
                     {avatar ? "Change a photo" : "Choose a photo"}
@@ -201,13 +206,16 @@ function Signup() {
               />
             </div>
 
-            <button className="mt-[15px] border rounded w-[35%] h-[34px] font-semibold tracking-wider text-white bg-red-500 hover:bg-red-600 cursor-pointer">
-              Signup
+            <button
+              className="mt-[15px] xl:mt-[25px] border rounded w-[35%] xl:w-[28%] h-[34px] xl:h-[40px] font-semibold tracking-wider text-white bg-red-500 hover:bg-red-600 cursor-pointer"
+              disabled={loading}
+            >
+              {loading ? "Processing...😊" : "Signup"}
             </button>
           </form>
-          <hr className="mt-[15px]" />
+          <hr className="mt-[15px] xl:mt-[25px]" />
           <Link to="/" className="flex justify-center">
-            <button className="mt-[15px] w-full h-[34px] rounded-sm text-white font-semibold tracking-widest bg-green-500 hover:bg-green-600 cursor-pointer">
+            <button className="mt-[15px] w-full h-[34px] xl:h-[40px] rounded-sm text-white font-semibold tracking-widest bg-green-500 hover:bg-green-600 cursor-pointer">
               Login
             </button>
           </Link>
