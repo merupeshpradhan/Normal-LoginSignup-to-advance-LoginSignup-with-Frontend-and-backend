@@ -68,7 +68,7 @@ function Signup() {
 
   return (
     <div className="flex justify-center items-center h-[100vh] bg-red-50">
-      <div className="border border-red-400 rounded-sm shadow-xs shadow-red-300 p-2 w-[85%] md:w-[70%] lg:w-[60%] xl:w-[30%]">
+      <div className="border border-red-400 rounded-sm shadow-xl shadow-red-300 p-2 w-[85%] md:w-[70%] lg:w-[60%] xl:w-[30%]">
         <div className="flex justify-center">
           <h2 className="tracking-widest font-extrabold text-lg italic text-red-600">
             Signup
@@ -94,9 +94,9 @@ function Signup() {
                   onClick={() =>
                     document.getElementById("avtarImgInput").click()
                   }
-                  className="bg-yellow-30 text-white bg-indigo-500 font-semibold md:font-bold tracking-widest text-sm md:text-lg py-[6px] xl:px-[12px] xl:py-[5px] xl:mt-[9px] rounded mt-[10px] md:mt-[13px] lg:mt-[15px] cursor-pointer w-full"
+                  className="bg-yellow-30 text-white bg-indigo-500 font-semibold md:font-bold tracking-widest text-sm md:text-lg py-[6px] xl:px-[12px] xl:py-[5px] xl:mt-[9px] rounded mt-[10px] md:mt-[13px] lg:mt-[15px] cursor-pointer w-ful"
                 >
-                  <p className="text-[9px] xl:text-[12px] px-[12px] xl:px-[5px]">
+                  <p className="text-[8px] xl:text-[12px] px-[5px] xl:px-[5px]">
                     {avatar ? "Change a photo" : "Choose a photo"}
                   </p>
                 </button>
@@ -133,8 +133,8 @@ function Signup() {
                   }
                   className="bg-yellow-30 text-white bg-indigo-500 font-semibold md:font-bold tracking-widest text-sm md:text-lg py-[6px] xl:px-[12px] xl:py-[5px] xl:mt-[9px] rounded mt-[10px] md:mt-[13px] lg:mt-[15px] cursor-pointer"
                 >
-                  <p className="text-[9px] xl:text-[12px] px-[12px] xl:px-[5px]">
-                    {extraPhoto ? "Change photo" : "Choose photo"}
+                  <p className="text-[8px] xl:text-[12px] px-[5px] xl:px-[5px]">
+                    {extraPhoto ? "Change a photo" : "Choose a photo"}
                   </p>
                 </button>
                 <input
