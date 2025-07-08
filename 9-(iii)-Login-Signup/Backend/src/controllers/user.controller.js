@@ -4,6 +4,8 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { User } from "../models/user.models.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
+
+// =================== REGISTER ===================
 const userRegister = asyncHandler(async (req, res) => {
   const { firstName, middleName, lastName, DOB, email, password } = req.body;
 
@@ -19,30 +21,34 @@ const userRegister = asyncHandler(async (req, res) => {
   }
 
   const avatar = await uploadOnCloudinary(avatarLocalPath);
-  if (!avatar) {
+  if (!avatar || !avatar.url) {
+    console.error("Avatar uplload faild:", avatar);
     throw new ApiError(400, "Failed to upload avatar to Cloudinary");
   }
 
-  // Extra Photo
+  // Upload Extra Photo if provided
   let extraPhotoUrl = null;
-  const extraPhotoPath = await req.files?.extraPhoto?.[0]?.path;
+  const extraPhotoPath = req.files?.extraPhoto?.[0]?.path;
   if (extraPhotoPath) {
     const extraUpload = await uploadOnCloudinary(extraPhotoPath);
-    if (extraUpload) {
+    if (extraUpload?.url) {
       extraPhotoUrl = extraUpload.url;
     }
   }
 
+  // check if email already exists
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     throw new ApiError(400, "This email is already registered");
   }
 
+  // Validate DOB format
   const dob = new Date(DOB);
   if (isNaN(dob.getTime())) {
-    throw new ApiError(400, "Invalid date of birth provided");
+    throw new ApiError(400, "Invalid date of birth format. use YYYY-MM-DD.");
   }
 
+  // Create the user in Database
   const user = await User.create({
     userName,
     DOB: dob,
@@ -66,6 +72,7 @@ const userRegister = asyncHandler(async (req, res) => {
     .json(new ApiResponse(201, userData, "User register succefully"));
 });
 
+// =================== LOGIN ===================
 const userLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -109,9 +116,10 @@ const userLogin = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, "User Login successfuly",userData));
+    .json(new ApiResponse(200, "User Login successfuly", userData));
 });
 
+// =================== LOGOUT ===================
 const userLogout = asyncHandler(async (req, res) => {
   res.clearCookie("accessToken");
   res.clearCookie("refreshToken");

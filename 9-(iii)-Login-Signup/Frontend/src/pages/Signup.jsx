@@ -18,17 +18,22 @@ function Signup() {
   const userSignup = async (e) => {
     e.preventDefault();
 
+    if (!avatar) {
+      alert("Please select an avatar photo (required)");
+      return;
+    }
+
     try {
       const formData = new FormData();
 
       formData.append("avatar", avatar);
       formData.append("extraPhoto", extraPhoto);
-      formData.append("firstName", firstName);
-      formData.append("middleName", middleName);
-      formData.append("lastName", lastName);
-      formData.append("DOB", DOB);
-      formData.append("email", email);
-      formData.append("password", password);
+      formData.append("firstName", firstName.trim());
+      formData.append("middleName", middleName.trim());
+      formData.append("lastName", lastName.trim());
+      formData.append("DOB", DOB.trim());
+      formData.append("email", email.trim());
+      formData.append("password", password.trim());
 
       const res = await axios.post(
         "http://localhost:4000/api/v1/users/register",
@@ -38,10 +43,14 @@ function Signup() {
 
       console.log("User register sucessfully!", res);
 
-      alert("You regusterd sucessfully 😍");
+      alert("You registerd sucessfully 😍");
 
-      navigate("/login");
+      navigate("/");
 
+      setAvatar("");
+      setAvtarPreview("");
+      setExtraPhoto("");
+      setextraPhotoPreview("");
       setFirstName("");
       setMiddleName("");
       setLastName("");
@@ -49,7 +58,10 @@ function Signup() {
       setEmail("");
       setPassword("");
     } catch (error) {
-      console.log("Please send all detials of your", error.response?.data?.message || error.message);
+      console.log(
+        "Please send all detials of your",
+        error.response?.data?.message || error.message
+      );
       alert("Please send all detials of your 🙄");
     }
   };
@@ -122,7 +134,7 @@ function Signup() {
                   className="bg-yellow-30 text-white bg-indigo-500 font-semibold md:font-bold tracking-widest text-sm md:text-lg py-[6px] xl:px-[12px] xl:py-[5px] xl:mt-[9px] rounded mt-[10px] md:mt-[13px] lg:mt-[15px] cursor-pointer"
                 >
                   <p className="text-[9px] xl:text-[12px] px-[12px] xl:px-[5px]">
-                    {avatar ? "Change photo" : "Choose photo"}
+                    {extraPhoto ? "Change photo" : "Choose photo"}
                   </p>
                 </button>
                 <input
