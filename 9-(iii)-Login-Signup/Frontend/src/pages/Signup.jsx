@@ -67,13 +67,13 @@ function Signup() {
         "Please send all detials of your",
         error.response?.data?.message || error.message
       );
-      alert("Something went wrong. Please check your details.🙄");
+      alert("Oops! Something went wrong. Please check and complete all your details. 🙄");
     }
   };
 
   return (
     <div className="flex justify-center items-center h-[100vh] bg-red-50">
-      <div className="border border-red-400 rounded-sm shadow-xl shadow-red-300 p-2 w-[85%] md:w-[70%] lg:w-[60%] xl:w-[30%] xl:pb-4">
+      <div className="border border-red-400 rounded-sm shadow-xl shadow-red-300 p-2 w-[85%] md:w-[70%] lg:w-[60%] xl:w-[50%] xl:pb-4">
         <div className="flex justify-center">
           <h2 className="tracking-widest font-extrabold text-lg italic text-red-600">
             Signup
@@ -90,8 +90,8 @@ function Signup() {
                     className="w-20 h-[80px] xl:w-32 xl:h-[130px] lg:w-[140px] lg:h-[130px] md:w-[130px] md:h-[130px] rounded-full"
                   />
                 ) : (
-                  <div className="w-20 h-[80px] xl:w-[150px] xl:h-[150px] lg:w-[140px] lg:h-[140px] rounded-full border md:w-[130px] md:h-[130px] font-bold border-gray-400 flex items-center justify-center text-xs text-gray-500 mb-2">
-                    No Image
+                  <div className="w-20 h-[80px] xl:w-[150px] xl:h-[150px] lg:w-[140px] lg:h-[140px] rounded-full border md:w-[130px] md:h-[130px] font-bold border-gray-400 flex items-center justify-center text-[9px] xl:text-xs lg:text-xs md:text-xs text-gray-500 mb-2">
+                    Avatar Image
                   </div>
                 )}
                 <button
@@ -123,12 +123,12 @@ function Signup() {
                 {extraPhotoPreview ? (
                   <img
                     src={extraPhotoPreview}
-                    alt="Avtar Preview"
+                    alt="extra photo Preview"
                     className="w-22 h-[80px] xl:w-[250px] xl:h-[130px] lg:w-[250px] lg:h-[130px] md:w-[220px] md:h-[130px] rounded-md"
                   />
                 ) : (
-                  <div className="w-20 h-[80px] xl:h-[145px] lg:w-[250px] lg:h-[140px] md:w-[220px] md:h-[130px] rounded border font-bold border-gray-400 flex items-center justify-center text-xs text-gray-500 mb-2">
-                    No Image
+                  <div className="w-20 h-[80px] xl:h-[145px] lg:w-[250px] lg:h-[140px] md:w-[220px] md:h-[130px] rounded border font-bold border-gray-400 flex items-center justify-center text-[10px] xl:text-xs lg:text-xs md:text-xs text-gray-500 mb-2">
+                    Cover Image
                   </div>
                 )}
                 <button
@@ -157,7 +157,7 @@ function Signup() {
                 />
               </div>
             </div>
-            <div className="flex justify-between xl:w-[85%]">
+            <div className="flex justify-between xl:w-[85%] md:w-[95%]">
               <input
                 className="border rounded-sm pl-2 w-[85%] xl:w-[90%] text-[13px] xl:text-[16px] lg:text-lg  tracking-wider h-[29px] lg:h-[35px] mt-[15px]"
                 type="text"
@@ -173,7 +173,7 @@ function Signup() {
                 onChange={(e) => setMiddleName(e.target.value)}
               />
             </div>
-            <div className="flex justify-between xl:w-[85%] lg:w-[80%] md:w-[70%]">
+            <div className="flex justify-between xl:w-[85%] lg:w-[80%] md:w-[95%] ">
               <input
                 className="border rounded-sm pl-2 w-[85%] xl:w-[90%] text-[13px] xl:text-[16px] lg:text-lg  tracking-wider h-[29px] lg:h-[35px] mt-[15px]"
                 type="text"
@@ -189,7 +189,7 @@ function Signup() {
                 onChange={(e) => setDOB(e.target.value)}
               />
             </div>
-            <div className="flex justify-between xl:w-[85%]">
+            <div className="flex justify-between xl:w-[85%] md:w-[95%]">
               <input
                 className="border rounded-sm pl-2 w-[85%] xl:w-[90%] text-[13px] xl:text-[16px] lg:text-lg  tracking-wider h-[29px] lg:h-[35px] mt-[15px]"
                 type="email"

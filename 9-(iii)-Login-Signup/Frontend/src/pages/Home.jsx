@@ -52,9 +52,9 @@ function Home() {
           <div className="flex items-center justify-between pl-[20px] px-[20px]">
             <img
               src={user?.avatar}
-              className="w-[45%] lg:w-[35%] rounded-full border-2 border-black"
+              className="w-[45%] lg:w-[35%] xl:w-[30%] rounded-full border-2 border-black"
             />
-            <img src={user?.extraPhoto} className="w-[45%] lg:w-[35%] rounded-xl" />
+            <img src={user?.extraPhoto} className="w-[45%] lg:w-[35%] xl:w-[30%] rounded-xl" />
           </div>
           <h3 className="text-lg font-semibold xl:font-bol xl:text-2xl tracking-wider text-yellow-800 mt-[10px] ml-[10px] mr-[10px]">
             <div className="flex flex-col justify-center items-center">

@@ -23,7 +23,7 @@ app.use("/api/v1/users", userRoutes);
 
 // Error Handler
 import { errorHandler } from "./middlewares/error.middleware.js";
-import e from "express";
+
 app.use(errorHandler);
 
 export { app };
